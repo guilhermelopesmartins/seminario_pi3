@@ -1,7 +1,71 @@
 <mvc:View controllerName="seminariopi3.controller.View"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:pg="sicap-controls.paginator"
+    height="100%">
+	<Page
+        id="page"
+		backgroundDesign="Solid"
+		showNavButton="true"
+		title="{i18n>Title.Despesas}"
+		navButtonPress="onNavBack"
+	>
+		<content>
+			<Table
+				id="idBancosTable"
+				inset="false"
+				alternateRowColors="true"
+				items="{Default>/}"
+			>
+				<headerToolbar>
+					<Toolbar id="toolbar">
+						<SearchField
+							id="idBancosSearchField"
+							search="onSearchFieldClickHandler"
+							liveChange="onSearchFieldChangeHandler"
+							placeholder="{i18n>Placeholder.Find}"
+							width="100%"
+						/>
+						
+						<ToolbarSpacer id="ToolbarSpacer"/>
+						<Button id="btn_adicionar" enabled="{controlModel>/Adicionar}" icon="sap-icon://create-form" class="sapUiTinyMarginEnd" tooltip="{i18n>Action.New}"  text="{i18n>Action.New}" type="Emphasized" press="onNewPress"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="column_code" width="6em" hAlign="Right">
+						<Text id="text_code" text="{i18n>Label.Codigo}" wrapping="false" tooltip="{i18n>Bancos.Title.Code}"/>
+					</Column>
+					<Column
+                        id="column_description"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text id="text_description" text="{i18n>Bancos.Title.Description}" wrapping="false" tooltip="{i18n>Bancos.Title.Description}"/>
+					</Column>
+					<Column
+                        id="column_actions"
+						width="104px"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="Center"
+					>
+						<Text id="text_actions" text="{i18n>Title.Actions}" tooltip="{i18n>Title.Actions}"/>
+					</Column>
+				</columns>
+				<items >
+					<ColumnListItem id="items" vAlign="Middle">
+						<cells>
+							<ObjectIdentifier id="codigo" title="{Default>Codigo}" tooltip="{Codigo}"/>
+							<Text id="text_descricao" width="auto" text="{Default>Descricao}" wrapping="false" tooltip="{Descricao}"/>
+							<HBox id="hbox_actions" alignItems="Center">
+									<Button id="btn_editar" class="sapUiTinyMarginEnd" enabled="{= ${controlModel>/Editar} || ${controlModel>/Visualizar}}" tooltip="{= ${controlModel>/Editar} ? ${i18n>Action.Edit} : ${i18n>Action.View}}" icon="{= ${controlModel>/Editar} ? 'sap-icon://edit' : 'sap-icon://show'}" type="Ghost" press="onEditPress" />
+									<Button id="btn_remover" class="sapUiTinyMarginEnd" enabled="{controlModel>/Remover}" icon="sap-icon://delete" type="Reject" press="onDeletePress" />
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
 </mvc:View>
