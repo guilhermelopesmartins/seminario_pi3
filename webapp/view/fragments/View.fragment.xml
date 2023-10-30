@@ -1,0 +1,129 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:edts="sicap-controls.editors"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+>
+	<edts:SICAPDialog
+        id="dialog"
+		titleAlignment="Start"
+		title="{i18n>Bancos.Title.Bank}"
+		draggable="true"
+		contentWidth="25em"
+		class="sapUiContentPadding"
+		showHeader="true"
+		type="Standard"
+
+	>
+		<edts:content>
+			<VBox class="sapUiSmallMargin" id="vbox1">
+				<f:Form id="form1" editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout
+                            id="responsivegrid"
+							labelSpanXL="3"
+							labelSpanL="4"
+							labelSpanM="{const>/dialogContentHuge/labelSpanM}"
+							labelSpanS="12"
+							adjustLabelSpan="true"
+							emptySpanXL="0"
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							columnsXL="1"
+							columnsL="1"
+							columnsM="1"
+							breakpointM="{const>/dialogContentMedium/breakpointM}"
+							singleContainerFullSize="true"
+						/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer id="formContainer1">
+							<f:formElements>
+								<f:FormElement id="formElement1" label="{i18n>Bancos.Title.Code}">
+									<f:fields>
+										<FlexBox id="flexBox1">
+											<items>
+												<Input
+                                                    id="inputcodigo"
+												    enabled="{= (${controlModel>/Adicionar} &amp;&amp; ${controlModel>/EmCriacao}) || ${controlModel>/Editar}}"
+													placeholder="Código do Banco"
+													editable="{controlModel>/NewEdit}"
+													width="100%"
+													value="{/Codigo}"
+													required="true"
+													maxLength="5"
+												>
+													<layoutData>
+														<FlexItemData
+                                                            id="flexItemData"
+															maxWidth="100%"
+															growFactor="1"
+														/>
+													</layoutData>
+												</Input>
+											</items>
+										</FlexBox>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+					<f:formContainers>
+						<f:FormContainer id="formContainer2">
+							<f:formElements>
+								<f:FormElement id="formElement2" label="{i18n>Bancos.Title.Description}">
+									<f:fields>
+										<FlexBox id="FlexBox2">
+											<items>
+												<Input
+                                                    id="inputDescricao"
+												    placeholder="Descrição do Banco"
+													editable="{controlModel>/NewEdit}"
+													width="100%"
+													value="{/Descricao}"
+													required="true"
+													enabled="{= (${controlModel>/Adicionar} &amp;&amp; ${controlModel>/EmCriacao}) || ${controlModel>/Editar}}"
+												>
+													<layoutData>
+														<FlexItemData id="flexItemData2"
+															maxWidth="100%"
+															growFactor="1"
+														/>
+													</layoutData>
+												</Input>
+											</items>
+										</FlexBox>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</edts:content>
+		<edts:beginButton>
+			<edts:SICAPButton
+            id="sicapbtn"
+			class="sapUiTinyMarginEnd" enabled="{= (${controlModel>/Adicionar} &amp;&amp; ${controlModel>/EmCriacao}) || ${controlModel>/Editar}}" icon="" tooltip="{i18n>Action.Save}" text="{i18n>Action.Save}" press="onSavePress" type="Accept"
+			/>
+		</edts:beginButton>
+		<edts:endButton>
+			<Button
+                id="btnCancel"
+				class="sapUiTinyMarginEnd"
+				activeIcon=""
+				enabled="true"
+				icon=""
+				iconDensityAware="true"
+				iconFirst="true"
+				text="{i18n>Action.Cancel}"
+				press="onDialogCancelPressAndDestroy"
+				textDirection="Inherit"
+				type="Reject"
+				tooltip="{i18n>Action.Cancel}"
+			/>
+		</edts:endButton>
+	</edts:SICAPDialog>
+</core:FragmentDefinition>

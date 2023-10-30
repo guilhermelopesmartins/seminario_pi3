@@ -29,19 +29,33 @@
 						/>
 						
 						<ToolbarSpacer id="ToolbarSpacer"/>
-						<Button id="btn_adicionar" enabled="{controlModel>/Adicionar}" icon="sap-icon://create-form" class="sapUiTinyMarginEnd" tooltip="{i18n>Action.New}"  text="{i18n>Action.New}" type="Emphasized" press="onNewPress"/>
+						<Button id="btn_adicionar" icon="sap-icon://create-form" class="sapUiTinyMarginEnd" tooltip="{i18n>Label.Novo}"  text="{i18n>Label.Novo}" type="Emphasized" press="onNewPress"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
 					<Column id="column_code" width="6em" hAlign="Right">
-						<Text id="text_code" text="{i18n>Label.Codigo}" wrapping="false" tooltip="{i18n>Bancos.Title.Code}"/>
+						<Text id="text_code" text="{i18n>Label.Codigo}" wrapping="false" tooltip="{i18n>Label.Codigo}"/>
 					</Column>
 					<Column
                         id="column_description"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
-						<Text id="text_description" text="{i18n>Bancos.Title.Description}" wrapping="false" tooltip="{i18n>Bancos.Title.Description}"/>
+						<Text id="text_description" text="{i18n>Label.Descricao}" wrapping="false" tooltip="{i18n>Label.Descricao}"/>
+					</Column>
+					<Column
+						id="column_value"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text id="text_value" text="{i18n>Label.Valor}" wrapping="false" tooltip="{i18n>Label.Valor}"/>
+					</Column>
+					<Column
+						id="column_payed"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text id="text_payed" text="{i18n>Label.Pago}" wrapping="false" tooltip="{i18n>Label.Pago}"/>
 					</Column>
 					<Column
                         id="column_actions"
@@ -50,17 +64,19 @@
 						demandPopin="true"
 						hAlign="Center"
 					>
-						<Text id="text_actions" text="{i18n>Title.Actions}" tooltip="{i18n>Title.Actions}"/>
+						<Text id="text_actions" text="{i18n>Label.Acoes}" tooltip="{i18n>Label.Acoes}"/>
 					</Column>
 				</columns>
 				<items >
 					<ColumnListItem id="items" vAlign="Middle">
 						<cells>
 							<ObjectIdentifier id="codigo" title="{Default>Codigo}" tooltip="{Codigo}"/>
-							<Text id="text_descricao" width="auto" text="{Default>Descricao}" wrapping="false" tooltip="{Descricao}"/>
+							<Text id="text_descricao" width="auto" text="{Default>Descricao}" wrapping="false"/>
+							<Text id="text_valor" width="auto" text="{Default>Valor}" wrapping="false"/>
+							<CheckBox id="checkbox_pago" selected="{Default>Pago}"/>
 							<HBox id="hbox_actions" alignItems="Center">
-									<Button id="btn_editar" class="sapUiTinyMarginEnd" enabled="{= ${controlModel>/Editar} || ${controlModel>/Visualizar}}" tooltip="{= ${controlModel>/Editar} ? ${i18n>Action.Edit} : ${i18n>Action.View}}" icon="{= ${controlModel>/Editar} ? 'sap-icon://edit' : 'sap-icon://show'}" type="Ghost" press="onEditPress" />
-									<Button id="btn_remover" class="sapUiTinyMarginEnd" enabled="{controlModel>/Remover}" icon="sap-icon://delete" type="Reject" press="onDeletePress" />
+									<Button id="btn_editar" class="sapUiTinyMarginEnd" icon="sap-icon://edi" type="Ghost" press="onEditPress" />
+									<Button id="btn_remover" class="sapUiTinyMarginEnd" icon="sap-icon://delete" type="Reject" press="onDeletePress" />
 							</HBox>
 						</cells>
 					</ColumnListItem>
